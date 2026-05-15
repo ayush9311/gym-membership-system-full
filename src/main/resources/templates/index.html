@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Titan Fitness Hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ✅ ADD: AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-badge">🏋</div>
+            <div>Titan Fitness Hub</div>
+        </div>
+
+        <nav class="nav-links">
+            <a th:href="@{/}" th:classappend="${page == 'dashboard'} ? 'active' : ''">Dashboard</a>
+            <a th:href="@{/members}" th:classappend="${page == 'members'} ? 'active' : ''">Members</a>
+            <a th:href="@{/plans}" th:classappend="${page == 'plans'} ? 'active' : ''">Plans</a>
+            <a th:href="@{/subscriptions}" th:classappend="${page == 'subscriptions'} ? 'active' : ''">Subscriptions</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero" data-aos="fade-up">
+
+        <div class="hero-left">
+
+            <div class="pill">Transform • Track • Achieve</div>
+
+            <h1>Titan Fitness Dashboard</h1>
+
+            <p>
+                Stay on top of your gym operations with a powerful dashboard.
+                Manage members, monitor subscriptions, and track performance —
+                all in one place.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" th:href="@{/members/add}">Add Member</a>
+                <a class="btn btn-outline" th:href="@{/subscriptions/add}">Create Subscription</a>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card glow-purple">
+                    <h3 th:text="${totalMembers}">0</h3>
+                    <p>Total Members</p>
+                </div>
+
+                <div class="stat-card glow-blue">
+                    <h3 th:text="${activeMembers}">0</h3>
+                    <p>Active Members</p>
+                </div>
+
+                <div class="stat-card glow-cyan">
+                    <h3 th:text="${totalPlans}">0</h3>
+                    <p>Membership Plans</p>
+                </div>
+
+                <div class="stat-card glow-green">
+                    <h3 th:text="${totalSubscriptions}">0</h3>
+                    <p>Total Subscriptions</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="hero-right" data-aos="zoom-in">
+
+            <img class="hero-image"
+                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80"
+                 alt="Gym Banner">
+
+            <div class="floating-card">
+                <h4>Monthly Revenue</h4>
+                <p id="estimatedRevenue">₹0</p>
+                <span>Auto-calculated from subscriptions</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section class="dashboard-grid">
+
+        <div class="panel" data-aos="fade-right">
+            <div class="panel-header">
+                <h2>Subscription Analytics</h2>
+                <span class="mini-label">Live Overview</span>
+            </div>
+
+            <div class="chart-box">
+                <canvas id="subscriptionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="panel" data-aos="fade-left">
+            <div class="panel-header">
+                <h2>Quick Access</h2>
+                <span class="mini-label">Manage System</span>
+            </div>
+
+            <div class="quick-grid">
+
+                <a class="quick-card" th:href="@{/members}">
+                    <div class="quick-icon">👤</div>
+                    <h3>Members</h3>
+                    <p>View and manage all gym members efficiently.</p>
+                </a>
+
+                <a class="quick-card" th:href="@{/plans}">
+                    <div class="quick-icon">📦</div>
+                    <h3>Plans</h3>
+                    <p>Create flexible plans tailored for your clients.</p>
+                </a>
+
+                <a class="quick-card" th:href="@{/subscriptions}">
+                    <div class="quick-icon">💳</div>
+                    <h3>Subscriptions</h3>
+                    <p>Track active memberships and payments.</p>
+                </a>
+
+                <div class="quick-card highlight-card">
+                    <div class="quick-icon">🔥</div>
+                    <h3>Performance</h3>
+                    <p>Monitor growth and engagement trends.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    
+    <!-- BOTTOM BANNER -->
+    <section class="feature-banner" data-aos="zoom-in">
+
+        <div class="feature-text">
+            <div class="pill dark-pill">Stay Consistent</div>
+
+            <h2>Consistency builds champions</h2>
+
+            <p>
+                Strong systems create strong results.
+                Track progress, manage members, and grow your gym effortlessly.
+            </p>
+        </div>
+
+        <img class="feature-image"
+             src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1000&q=80"
+             alt="Fitness">
+
+    </section>
+
+</div>
+
+<!-- JS -->
+<script th:src="@{/js/dashboard.js}"></script>
+
+<!-- ✅ INIT ANIMATIONS -->
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+</script>	
+
+</body>
+</html>

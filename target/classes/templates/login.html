@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Titan Fitness Hub - Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .left-section {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74') no-repeat center;
+            background-size: cover;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 60px 40px;
+        }
+
+        .right-section h2 {
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            height: 45px;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: #2c5364;
+            color: white;
+            border-radius: 10px;
+            height: 45px;
+            font-weight: bold;
+        }
+
+        .btn-login:hover {
+            background: #1e3c4a;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        @media(max-width: 768px){
+            .login-container {
+                flex-direction: column;
+            }
+            .left-section {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <!-- Left Image Section -->
+    <div class="left-section"></div>
+
+    <!-- Right Form Section -->
+    <div class="right-section">
+        <h2>🏋️ Titan Fitness Hub</h2>
+        <p class="text-muted mb-4">Login to manage your gym system</p>
+
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+            </div>
+
+            <button type="submit" class="btn btn-login">Login</button>
+        </form>
+
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+    </div>
+
+</div>
+
+</body>
+</html>

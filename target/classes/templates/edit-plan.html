@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Plan</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-badge">🏋</div>
+            <div>Titan Fitness Hub</div>
+        </div>
+    </div>
+</header>
+
+<div class="container form-container">
+
+    <h2>Edit Membership Plan</h2>
+    <p class="form-subtext">Update plan details and pricing.</p>
+
+    <form th:action="@{/plans/update/{id}(id=${plan.id})}" 
+          method="post" 
+          th:object="${plan}" 
+          class="form-card">
+
+        <div class="form-group">
+            <label>Plan Name</label>
+            <input type="text" th:field="*{planName}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Duration (Months)</label>
+            <input type="number" th:field="*{durationInMonths}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Price (₹)</label>
+            <input type="number" th:field="*{price}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" th:field="*{description}">
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-primary">Update Plan</button>
+            <a class="btn btn-secondary" th:href="@{/plans}">Cancel</a>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

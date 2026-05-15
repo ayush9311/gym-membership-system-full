@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subscriptions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-badge">🏋</div>
+            <div>Gym Membership Pro</div>
+        </div>
+        <nav class="nav-links">
+            <a th:href="@{/}">Dashboard</a>
+            <a th:href="@{/members}">Members</a>
+            <a th:href="@{/plans}">Plans</a>
+            <a th:href="@{/subscriptions}" class="active">Subscriptions</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- ✅ HERO WITH IMAGE INSIDE -->
+	<section class="page-hero small-hero">
+	    <div>
+	        <h1>Subscriptions</h1>
+	        <p>Track and manage active memberships.</p>
+	    </div>
+
+	    <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba"
+	         style="width:320px;height:200px;border-radius:15px;">
+	</section>
+
+    <!-- TABLE SECTION -->
+    <section class="panel">
+        <div class="panel-header">
+            <h2>All Subscriptions</h2>
+            <a class="btn btn-primary" th:href="@{/subscriptions/add}">Add Subscription</a>
+        </div>
+
+        <table class="premium-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Member</th>
+                    <th>Plan</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="sub : ${subscriptions}">
+                    <td th:text="${sub.id}"></td>
+                    <td th:text="${sub.member.fullName}"></td>
+                    <td th:text="${sub.plan.planName}"></td>
+                    <td th:text="${sub.startDate}"></td>
+                    <td th:text="${sub.endDate}"></td>
+
+                    <td>
+                        <span class="badge badge-green"
+                              th:if="${sub.status.name() == 'ACTIVE'}">Active</span>
+
+                        <span class="badge badge-red"
+                              th:if="${sub.status.name() == 'EXPIRED'}">Expired</span>
+                    </td>
+
+                    <td th:text="${sub.paymentStatus}"></td>
+
+                    <td>
+                        <a class="btn btn-danger"
+                           th:href="@{/subscriptions/delete/{id}(id=${sub.id})}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+</body>
+</html>

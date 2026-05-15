@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Members</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-badge">🏋</div>
+            <div>Titan Fitness Hub</div>
+        </div>
+        <nav class="nav-links">
+            <a th:href="@{/}">Dashboard</a>
+            <a th:href="@{/members}" class="active">Members</a>
+            <a th:href="@{/plans}">Plans</a>
+            <a th:href="@{/subscriptions}">Subscriptions</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+<section class="page-hero small-hero">
+    <div>
+        <div class="pill">Members</div>
+        <h1>Gym Members</h1>
+        <p>Manage and monitor all registered members.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80">
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <h2>Member Directory</h2>
+        <a class="btn btn-primary" th:href="@{/members/add}">Add Member</a>
+    </div>
+
+    <table class="premium-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Join Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.fullName}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.phone}"></td>
+            <td th:text="${member.gender}"></td>
+            <td th:text="${member.age}"></td>
+            <td th:text="${member.joinDate}"></td>
+
+            <td>
+                <span th:if="${member.active}" class="badge badge-green">Active</span>
+                <span th:unless="${member.active}" class="badge badge-red">Inactive</span>
+            </td>
+
+            <td>
+                <a class="btn btn-secondary" th:href="@{/members/edit/{id}(id=${member.id})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/members/delete/{id}(id=${member.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+</body>
+</html>

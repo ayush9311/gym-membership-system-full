@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.m2e.Maven2LaunchConfigurationType">
+    <booleanAttribute key="M2_BATCH" value="false"/>
+    <stringAttribute key="M2_GOALS" value="-U archetype:generate"/>
+    <listAttribute key="M2_PROPERTIES">
+        <listEntry value="archetypeGroupId=am.ik.archetype"/>
+        <listEntry value="archetypeArtifactId=graalvm-springmvc-blank-archetype"/>
+        <listEntry value="archetypeVersion=0.1.2"/>
+        <listEntry value="groupId=jhvjgv"/>
+        <listEntry value="artifactId= kbhkb"/>
+        <listEntry value="version=0.0.1-SNAPSHOT"/>
+        <listEntry value="package=jhvjgv.kbhkb"/>
+        <listEntry value="outputDirectory=/Users/ayushsingh/Downloads/gym-membership-system-full"/>
+    </listAttribute>
+    <booleanAttribute key="M2_SAVE_BEFORE_LAUNCH" value="false"/>
+    <booleanAttribute key="org.eclipse.debug.ui.private" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="/var/folders/nc/q_5n2l4s34181bv7lv9vftg00000gn/T/m2e-archetypeGenerator1715828573005710584"/>
+</launchConfiguration>

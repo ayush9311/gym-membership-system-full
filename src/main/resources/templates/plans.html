@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Plans</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-badge">🏋</div>
+            <div>Gym Membership Pro</div>
+        </div>
+        <nav class="nav-links">
+            <a th:href="@{/}">Dashboard</a>
+            <a th:href="@{/members}">Members</a>
+            <a th:href="@{/plans}" class="active">Plans</a>
+            <a th:href="@{/subscriptions}">Subscriptions</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <section class="page-hero small-hero">
+        <div>
+            <div class="pill">Plans</div>
+            <h1>Membership Plans</h1>
+            <p>Create and manage premium gym plans.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80">
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Plans List</h2>
+            <a class="btn btn-primary" th:href="@{/plans/add}">Add Plan</a>
+        </div>
+
+        <table class="premium-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="plan : ${plans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.planName}"></td>
+                <td th:text="${plan.durationInMonths}"></td>
+                <td>₹<span th:text="${plan.price}"></span></td>
+                <td th:text="${plan.description}"></td>
+
+                <td>
+                    <a class="btn btn-secondary" th:href="@{/plans/edit/{id}(id=${plan.id})}">Edit</a>
+                    <a class="btn btn-danger" th:href="@{/plans/delete/{id}(id=${plan.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</div>
+</body>
+</html>
